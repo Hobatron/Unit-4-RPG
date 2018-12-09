@@ -1,0 +1,78 @@
+
+body {
+    font-size: 30px;
+    font-family: CloisterBlack;
+    background-color: rgb(36, 36, 36);
+    color: white;
+}
+
+
+
+/* Main Game Content */
+#mainContainer {
+    max-width: 100vw;
+    height:100vh;
+}
+
+#mainWindow {
+    position: relative;
+    height: 70%;
+    background-color: rgb(27, 27, 27);
+}
+
+/* HUD */
+#topHUD{
+    height: 15%;
+}
+#btmHUD{
+    height: 15%;
+}
+
+/* Char Selection */
+.charImg {
+    width: 220px;
+}
+.charContainer{
+    margin: 0 3% 0 3%;
+    z-index: 3;
+}
+.selected {
+    z-index: 1;
+    opacity: 0.0;
+    transition: opacity .6s;
+    -moz-transition: opacity .6s;
+    -webkit-transition: opacity .6s;
+}
+
+#charCard {
+    z-index: 2;
+    position: absolute;
+    font-size: 30px;
+    width: 95%;
+    height: 75%;
+    background-color:rgb(56, 56, 56);
+    display: none;
+}
+
+#charCard > .btn {
+    font-size: 68px;
+    width: 250px;
+    height: 100%;
+}
+
+#choose {
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+@font-face {
+    font-family: CloisterBlack;
+    src: url("../font/CloisterBlack.ttf");
+}
