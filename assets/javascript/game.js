@@ -43,7 +43,7 @@ $(document).ready(function () {
 
                     } else {
                         $.each(charDetails.wizard, function () {
-
+                            console.log("test");
                         });
                     }
                     $("#charCard").fadeIn(600);
