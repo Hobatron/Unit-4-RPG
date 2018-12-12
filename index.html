@@ -19,11 +19,11 @@
 
 <body>
 
-    <div id="player">
+    <!-- <div id="player">
         <audio id="myAudio" autoplay hidden>
             <source src="assets/sounds/tristram.mp3" type="audio/mpeg">
         </audio>
-    </div>
+    </div> -->
 
 
     <div id="mainContainer" class="container">
@@ -40,7 +40,7 @@
             </div>
 
             <div id="1" class="charContainer">
-                <img id="warrior" value="1" class="charImg charListener border border-dark" src="assets/imgs/warrior.png"
+                <img value="1" id="warrior" class="charImg charListener border border-dark" src="assets/imgs/warrior.png"
                     alt="Warrior">
             </div>
             <div id="2" class="charContainer">
@@ -51,12 +51,28 @@
                 <img id="archer" class="charImg charListener border border-dark" src="assets/imgs/archer.png" alt="Archer">
             </div>
 
-
             <!-- Hub -->
 
 
             <!-- Fight -->
 
+            <div id="fightWindow" class="row align-items-center">
+                <div id="abilites" class="col">
+                    <div class="col">
+                        <p id="currentHP"></p>
+                    </div>
+                    <button id="atk1" class="attack row btn btn-dark btn-lg"></button><br>
+                    <button id="atk2" class="attack row btn btn-dark btn-lg"></button><br>
+                    <button id="atk3" class="attack row btn btn-dark btn-lg"></button><br>
+
+                </div>
+
+
+                <div id="monsterBlock" class="col">
+                    <p id="monsterHP" style="position:absolute;top:-150px; left:250px"></p>
+                    <img id="monster" style="position:absolute;width:219px;height:350px;top:-280px;" />
+                </div>
+            </div>
 
 
 
