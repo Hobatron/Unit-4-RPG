@@ -100,7 +100,6 @@ $(document).ready(function () {
             var currentMonster = monsters[Object.keys(monsters)[fightNum]];
             $("#monsterBlock > img").attr("src", "assets/imgs/" + currentMonster.img);
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
-            fightNum = fightNum + 1;
         },
 
         attack: function(exAtk, atkLevel) {
@@ -109,6 +108,8 @@ $(document).ready(function () {
             var ourDmg = charDetails[selectedChar].skills[exAtk][atkLevel];
             ourDmg = Math.floor(Math.random() * (ourDmg[1]-ourDmg[0]+1)) + ourDmg[0];
             console.log(ourDmg);
+            console.log(currentMonster)
+            console.log(currentMonster.hp)
             currentMonster.hp = currentMonster.hp - ourDmg;
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
             ourTurn = true;
