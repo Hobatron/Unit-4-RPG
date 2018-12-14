@@ -2,14 +2,16 @@
 var gameStarting = false;
 var ourTurn = true;
 var currentHP = 40;
+var leveling = false;
+var fightNum = 0;
 var monsters = {
     goblin: { img: "ChainGoblin.png", hp: 10, atk: 2 },
     undead: { img: "Undead.png", hp: 24, atk: 4 },
     boss: { img: "Boss.png", hp: 40, atk: 8 }
 };
-
+var currentMonster = monsters[Object.keys(monsters)[fightNum]];
 var selectedChar;
-var fightNum = 0;
+
 var charDetails = {
     "warrior": {
         story: "What more does one need than the thrill of combat to keep him sane. Death is resorved for those who deserve it...",
@@ -97,21 +99,27 @@ $(document).ready(function () {
         },
 
         loadEnemy: function () {
-            var currentMonster = monsters[Object.keys(monsters)[fightNum]];
+            console.log(currentMonster);
             $("#monsterBlock > img").attr("src", "assets/imgs/" + currentMonster.img);
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
         },
 
+        levelUp: function () {
+            $("#monsterBlock > p ").text("This monster has been defeated, click a skill to level it up");
+            leveling = true;
+        },
+
         attack: function(exAtk, atkLevel) {
-            var currentMonster = monsters[Object.keys(monsters)[fightNum]];
             console.log(exAtk +" : "+atkLevel);
             var ourDmg = charDetails[selectedChar].skills[exAtk][atkLevel];
             ourDmg = Math.floor(Math.random() * (ourDmg[1]-ourDmg[0]+1)) + ourDmg[0];
-            console.log(ourDmg);
-            console.log(currentMonster)
-            console.log(currentMonster.hp)
             currentMonster.hp = currentMonster.hp - ourDmg;
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
+            if (currentMonster.hp < 1) {
+                fightNum++;
+                currentMonster = monsters[Object.keys(monsters)[fightNum]];
+                this.levelUp()
+            };
             ourTurn = true;
         },
 
@@ -190,15 +198,17 @@ $(document).ready(function () {
         if (!gameStarting) {
             MainGame.transition("setupGame");
             gameStarting = true;
-        }
+        };
     });
 
     $(".attack").click(function(){
-        if (ourTurn){
+        if (!leveling){
             MainGame.attack(this.value, $("#" + this.id).data().level);
-        }
+        } else {
+            $("#" + this.id).data().level++;
+            leveling = false;
+            MainGame.loadEnemy();
+        };
     });
-
-
 
 });
