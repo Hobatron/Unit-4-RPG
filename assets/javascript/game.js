@@ -100,7 +100,7 @@ $(document).ready(function () {
 
         loadEnemy: function () {
             console.log(currentMonster);
-            $("#monsterBlock > img").attr("src", "assets/imgs/" + currentMonster.img);
+            $("#monsterBlock > img").attr("src", "/assets/imgs/" + currentMonster.img);
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
         },
 
