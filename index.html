@@ -13,18 +13,16 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/javascript/game.js"></script>
-
-
 </head>
 
 <body>
+    <iframe src="assets\sounds\silence.mp3" allow="autoplay" id="audio"></iframe>
 
-    <div id="player">
-        <audio id="myAudio" autoplay hidden>
-            <source src="assets/sounds/tristram.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    <audio autoplay id="myAudio">
+        <source src="assets\sounds\tristram.mp3">
+    </audio>
 
+    
 
     <div id="mainContainer" class="container">
         <div id="topHUD" class="row align-items-center justify-content-center">
@@ -83,9 +81,6 @@
         <div id="btmHUD">
         </div>
     </div>
-    <!-- <script>
-        alert("test");
-    </script> -->
 
 </body>
 

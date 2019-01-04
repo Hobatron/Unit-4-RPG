@@ -1,13 +1,13 @@
-// document.getElementById("myAudio").volume = 0.125;
+
 var gameStarting = false;
 var ourTurn = true;
 var currentHP = 40;
 var leveling = false;
 var fightNum = 0;
 var monsters = {
-    goblin: { img: "ChainGoblin.png", hp: 10, atk: 2 },
-    undead: { img: "Undead.png", hp: 24, atk: 4 },
-    boss: { img: "Boss.png", hp: 40, atk: 8 }
+    goblin: { img: "ChainGoblin.PNG", hp: 10, atk: 4 },
+    undead: { img: "Undead.PNG", hp: 24, atk: 8 },
+    boss: { img: "Boss.PNG", hp: 40, atk: 12 }
 };
 var currentMonster = monsters[Object.keys(monsters)[fightNum]];
 var selectedChar;
@@ -87,6 +87,9 @@ var charDetails = {
 };
 
 $(document).ready(function () {
+    $("iframe").remove();
+    setTimeout(function(){document.getElementById("myAudio").volume = 0.125; }, 20);
+    // $("#myAudio").delay(20ms).attr("volume", "0.125")
     var viewing = false;
 
     var MainGame = {
@@ -99,8 +102,8 @@ $(document).ready(function () {
         },
 
         loadEnemy: function () {
-            console.log(currentMonster);
-            $("#monsterBlock > img").attr("src", "/assets/imgs/" + currentMonster.img);
+            console.log(currentMonster.img);
+            $("#monsterBlock > img").attr("src", "assets/imgs/" + currentMonster.img);
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
         },
 
@@ -117,8 +120,20 @@ $(document).ready(function () {
             $("#monsterBlock > p ").text("Life: " + currentMonster.hp)
             if (currentMonster.hp < 1) {
                 fightNum++;
-                currentMonster = monsters[Object.keys(monsters)[fightNum]];
-                this.levelUp()
+                if (fightNum == 3) {
+                    $("#monsterBlock > p ").text("You win!");
+                    $("#monsterBlock > p ").append("<button class='btn btn-dark btn-lg' id='resetGame'>Reset");
+                } else {
+                    currentMonster = monsters[Object.keys(monsters)[fightNum]];
+                    this.levelUp()
+                }
+            } else {
+                currentHP -= currentMonster.atk;
+                $("#currentHP").text("Your Life: "+currentHP);
+                if (currentHP <= 0) {
+                    $("#currentHP").text("You're dead! hp: "+currentHP);
+                    $("#currentHP").append("<button class='btn btn-dark btn-lg' id='resetGame'>Retry");
+                }
             };
             ourTurn = true;
         },
