@@ -89,7 +89,6 @@ var charDetails = {
 $(document).ready(function () {
     $("iframe").remove();
     setTimeout(function(){document.getElementById("myAudio").volume = 0.125; }, 20);
-    // $("#myAudio").delay(20ms).attr("volume", "0.125")
     var viewing = false;
 
     var MainGame = {
