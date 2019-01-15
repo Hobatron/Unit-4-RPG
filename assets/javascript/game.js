@@ -87,6 +87,10 @@ var charDetails = {
 };
 
 $(document).ready(function () {
+    var resetBtn = $("<button class='btn btn-dark btn-lg' id='resetGame'>");
+    $(resetBtn).click(function(){
+        location.reload()
+    });
     $("iframe").remove();
     setTimeout(function(){document.getElementById("myAudio").volume = 0.125; }, 20);
     var viewing = false;
@@ -121,7 +125,8 @@ $(document).ready(function () {
                 fightNum++;
                 if (fightNum == 3) {
                     $("#monsterBlock > p ").text("You win!");
-                    $("#monsterBlock > p ").append("<button class='btn btn-dark btn-lg' id='resetGame'>Reset");
+                    $(resetBtn).text("Reset");
+                    $("#monsterBlock > p ").append(resetBtn);
                 } else {
                     currentMonster = monsters[Object.keys(monsters)[fightNum]];
                     this.levelUp()
@@ -131,7 +136,8 @@ $(document).ready(function () {
                 $("#currentHP").text("Your Life: "+currentHP);
                 if (currentHP <= 0) {
                     $("#currentHP").text("You're dead! hp: "+currentHP);
-                    $("#currentHP").append("<button class='btn btn-dark btn-lg' id='resetGame'>Retry");
+                    $(resetBtn).text("Retry");
+                    $("#currentHP").append(resetBtn);
                 }
             };
             ourTurn = true;
@@ -224,5 +230,4 @@ $(document).ready(function () {
             MainGame.loadEnemy();
         };
     });
-
 });
